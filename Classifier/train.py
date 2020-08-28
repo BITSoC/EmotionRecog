@@ -16,30 +16,36 @@ EPOCHS = 30
 IMG_SIZE = (48, 48)
 # NUM_CLASSES = 7
 
-X_train, X_test, y_train, y_test, NUM_CLASSES = preprocess_data(filename='/content/drive/My Drive/fer2013.csv',
-                                                    image_size=IMG_SIZE) 
+X_train, X_test, y_train, y_test,
+NUM_CLASSES = preprocess_data(filename='/content/drive/My Drive/fer2013.csv',
+                              image_size=IMG_SIZE)
 
 model = Sequential()
 
 # 1st Convolution layer
-model.add(give_convolution_layer(filters=64, kernel_size=(3,3),
-            padding='same', use_bn=False, dropout_percentage=None, pool_size=(2,2)))
+model.add(give_convolution_layer(filters=64, kernel_size=(3, 3),
+                                 padding='same', use_bn=False,
+                                 dropout_percentage=None, pool_size=(2, 2)))
 
 # 2nd Convolution layer
-model.add(give_convolution_layer(filters=128, kernel_size=(3,3),
-            padding='same', use_bn=True, dropout_percentage=0.3, pool_size=(2,2)))
+model.add(give_convolution_layer(filters=128, kernel_size=(3, 3),
+                                 padding='same', use_bn=True,
+                                 dropout_percentage=0.3, pool_size=(2, 2)))
 
 # 3rd Convolution layer
-model.add(give_convolution_layer(filters=256, kernel_size=(3,3),
-            padding='same', use_bn=True, dropout_percentage=0.3, pool_size=(2,2)))
+model.add(give_convolution_layer(filters=256, kernel_size=(3, 3),
+                                 padding='same', use_bn=True,
+                                 dropout_percentage=0.3, pool_size=(2, 2)))
 
 # 4th Convolution layer
-model.add(give_convolution_layer(filters=512, kernel_size=(3,3),
-            padding='same', use_bn=True, dropout_percentage=0.3, pool_size=(2,2)))
+model.add(give_convolution_layer(filters=512, kernel_size=(3, 3),
+                                 padding='same', use_bn=True,
+                                 dropout_percentage=0.3, pool_size=(2, 2)))
 
 # 5th Convolution layer
-model.add(give_convolution_layer(filters=1024, kernel_size=(3,3),
-            padding='same', use_bn=True, dropout_percentage=0.3, pool_size=(2,2)))
+model.add(give_convolution_layer(filters=1024, kernel_size=(3, 3),
+                                 padding='same', use_bn=True,
+                                 dropout_percentage=0.3, pool_size=(2, 2)))
 
 # Flattening
 model.add(Flatten())
@@ -50,10 +56,12 @@ model.add(BatchNormalization())
 model.add(Dropout(0.2))
 
 # Last layer
-model.add(Dense(NUM_CLASSES, activation='softmax', kernel_initializer='glorot_normal'))
+model.add(Dense(NUM_CLASSES, activation='softmax',
+                kernel_initializer='glorot_normal'))
 
 # Compile model
-model.compile(optimizer=Adam(learning_rate=0.0001), loss='categorical_crossentropy', metrics=[categorical_accuracy])
+model.compile(optimizer=Adam(learning_rate=0.0001),
+              loss='categorical_crossentropy', metrics=[categorical_accuracy])
 
 # Print model summary
 print(model.summary())

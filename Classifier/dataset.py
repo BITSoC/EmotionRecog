@@ -4,6 +4,7 @@ import numpy as np
 # get the data
 label_map = ['Anger', 'Disgust', 'Fear', 'Happy', 'Sad', 'Surprise', 'Neutral']
 
+
 def getData(filename):
     # images are 48x48
     # N = 35887
