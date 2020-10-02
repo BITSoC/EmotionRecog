@@ -32,18 +32,17 @@ labels = []
 # loop over the image paths
 for imagePath in imagePaths:
 
-	# extract the class label from the filename
-	label = imagePath.split(os.path.sep)[-2]
-	# load the input image (150x150) and preprocess it
-	image = load_img(imagePath, target_size=(224, 224))
-	image = img_to_array(image)/255.
-	
- 
-	#image = preprocess_input(image)
+    # extract the class label from the filename
+    label = imagePath.split(os.path.sep)[-2]
+    # load the input image (150x150) and preprocess it
+    image = load_img(imagePath, target_size=(224, 224))
+    image = img_to_array(image)/255.
 
-	# update the data and labels lists, respectively
-	data.append(image)
-	labels.append(label)
+    # image = preprocess_input(image)
+
+    # update the data and labels lists, respectively
+    data.append(image)
+    labels.append(label)
 
 # convert the data and labels to NumPy arrays
 data = np.array(data, dtype="float32")
@@ -55,5 +54,5 @@ labels = lb.fit_transform(labels)
 label_value = to_categorical(labels)
 
 # store data and labels in memory address
-np.save('data address',data)
-np.save('labels address',labels)
+np.save('data address', data)
+np.save('labels address', labels)
